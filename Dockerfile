@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
 # Copy only the necessary .csproj file into the container
 WORKDIR /app
-COPY ~/workspace/dotdocker/hello-world.csproj ./
+COPY /var/lib/jenkins/workspace/dotdocker/hello-world.csproj ./
 # Adjust the path as per your project structure
 
 # Restore the dependencies
