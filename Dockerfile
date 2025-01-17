@@ -11,7 +11,7 @@ COPY hello-world.csproj ./
 RUN dotnet restore
 
 # Now copy the rest of the project files
-# COPY . ./  # Copy all project files into the container
+COPY . . # Copy all project files into the container
 
 # Build the project (no restore since it's already done)
 RUN dotnet build -c Release --no-restore
