@@ -20,7 +20,7 @@ RUN dotnet build -c Release
 RUN dotnet publish -c Release -o /app/publish 
 
 # Runtime image (use .NET 6 runtime since the project uses .NET 6)
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 
 # Set the working directory for the runtime image
 WORKDIR /app
