@@ -3,6 +3,7 @@ WORKDIR /app
 
 # Copy everything
 COPY src/ ./src/
+
 # Restore as distinct layers
 RUN dotnet restore
 # Run unit tests (if the tests fail the build process is stopped)
