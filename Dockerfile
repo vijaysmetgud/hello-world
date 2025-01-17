@@ -17,7 +17,7 @@ COPY . .
 RUN dotnet build -c Release 
 
 # Publish the project to /app/publish
-RUN dotnet publish -c Release -o /app/publish --no-build
+RUN dotnet publish -c Release -o /app/publish --no-build --runtime linux-x64
 
 # Runtime image (use .NET 6 runtime since the project uses .NET 6)
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
