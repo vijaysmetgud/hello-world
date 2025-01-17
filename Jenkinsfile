@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image using the Dockerfile
-                    docker.build(DOCKER_IMAGE_NAME, './Dockerfile')
+                    sh 'docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:latest ./publish'
                 }
             }
         }
