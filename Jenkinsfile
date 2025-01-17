@@ -7,6 +7,8 @@ pipeline {
         DOCKER_IMAGE_NAME = 'vsmetgud/dotnet'  // Desired Docker image name
         DOCKER_REGISTRY = 'docker.io' // Docker Hub (use your registry if not Docker Hub)
         DOCKER_CREDENTIALS = 'docker-hub-credentials' // Jenkins Docker Hub credentials ID
+        DOCKER_USER = 'vsmetgud'
+        DOCKER_PASSWORD = 'Omganesh@123456'
     }
 
     stages {
