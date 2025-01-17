@@ -1,10 +1,18 @@
 # Build stage of Docker Image
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
-COPY *.csproj ./
-RUN dotnet restore
+# Copy only the necessary .csproj file into the container
+COPY src/HelloWorld/HelloWorld.csproj ./  # Adjust the path as per your project structure
+
+# Restore the dependencies
+RUN dotnet restore HelloWorld.csproj
+
+# Copy the rest of the application
 COPY . ./
+
+# Build the application
 RUN dotnet build -c Release --no-restore
+
 RUN dotnet publish -c Release -o /app/publish --no-build
  
 # Final image AS a RUNTIME
