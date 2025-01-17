@@ -38,5 +38,4 @@ RUN dotnet publish -r linux-x64 --self-contained true -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app/out .
-EXPOSE 8000
 ENTRYPOINT ["dotnet", "hello-world.dll"]
