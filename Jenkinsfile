@@ -41,8 +41,7 @@ pipeline {
             steps {
                 script {
                     // Publish the .NET application to the './publish' directory
-                    sh "dotnet publish ./src/hello-world/hello-world.csproj --configuration Release --output ./publish
-"
+                    sh "dotnet publish ./src/hello-world/hello-world.csproj --configuration Release --output ./publish"
                 }
             }
         }
