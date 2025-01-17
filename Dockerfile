@@ -1,5 +1,5 @@
 # Build stage of Docker Image (use .NET 6 SDK since your project seems to target .NET 6)
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN dotnet build -c Release 
 
 # Publish the project to /app/publish
-RUN dotnet publish -c Release -o /app/publish --no-build --runtime linux-x64
+RUN dotnet publish -c Release -o /app/publish 
 
 # Runtime image (use .NET 6 runtime since the project uses .NET 6)
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
