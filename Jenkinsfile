@@ -7,8 +7,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'vsmetgud/dotnet'  // Desired Docker image name
         DOCKER_REGISTRY = 'docker.io' // Docker Hub (use your registry if not Docker Hub)
         DOCKER_CREDENTIALS = 'docker-hub-credentials' // Jenkins Docker Hub credentials ID
-        DOCKER_USER = 'vsmetgud'
-        DOCKER_PASSWORD = 'Omganesh@123456'
+        WORKSPACE_PATH = '/var/lib/jenkins/workspace/dotdocker'  // Your workspace path
     }
 
     stages {
@@ -23,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Restore NuGet dependencies
-                    sh "dotnet restore"
+                    sh "dotnet restore $WORKSPACE_PATH/hello-world.csproj"
                 }
             }
         }
@@ -32,7 +31,7 @@ pipeline {
             steps {
                 script {
                     // Build the .NET application in Release mode
-                    sh "dotnet build --configuration Release"
+                    sh "dotnet build --configuration Release $WORKSPACE_PATH/hello-world.csproj"
                 }
             }
         }
@@ -41,9 +40,7 @@ pipeline {
             steps {
                 script {
                     // Publish the .NET application to the './publish' directory
-                    sh 'dotnet publish /var/lib/jenkins/workspace/dotdocker/hello-world.csproj --configuration Release --output ./publish'
-
-
+                    sh 'dotnet publish $WORKSPACE_PATH/hello-world.csproj --configuration Release --output $WORKSPACE_PATH/publish'
                 }
             }
         }
@@ -51,13 +48,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -f Dockerfile -t myimage:latest /var/lib/jenkins/workspace/dotdocker/'
-
-
+                    // Build the Docker image using the Dockerfile in the workspace
+                    sh "docker build -f $WORKSPACE_PATH/Dockerfile -t $DOCKER_IMAGE_NAME:latest $WORKSPACE_PATH"
                 }
             }
         }
-
 
         stage('Push Docker Image to Registry') {
             steps {
@@ -72,18 +67,18 @@ pipeline {
         }
     }
 
-    // post {
-    //     success {
-    //         // Notify upon successful build and push
-    //         echo 'Build, Dockerization, and Push were successful!'
-    //     }
-    //     failure {
-    //         // Notify upon failure
-    //         echo 'Build or Dockerization failed. Please check the logs for errors.'
-    //     }
-    //     always {
-    //         // Clean workspace after build
-    //         cleanWs()
-    //     }
-    // }
+    post {
+        success {
+            // Notify upon successful build and push
+            echo 'Build, Dockerization, and Push were successful!'
+        }
+        failure {
+            // Notify upon failure
+            echo 'Build or Dockerization failed. Please check the logs for errors.'
+        }
+        always {
+            // Clean workspace after build
+            cleanWs()
+        }
+    }
 }
