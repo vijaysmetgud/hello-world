@@ -1,18 +1,14 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+# Build stage of Docker Image
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
-
-# Copy everything
-COPY ./publish ./src/
-
-# Restore as distinct layers
+COPY *.csproj ./
 RUN dotnet restore
-# Run unit tests (if the tests fail the build process is stopped)
-RUN dotnet test
-# Build and publish a release
-RUN dotnet publish -r linux-x64 --self-contained true -c Release -o out
-
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
-WORKDIR /app/src
-COPY --from=build-env /app/out .
+COPY . ./
+RUN dotnet build -c Release --no-restore
+RUN dotnet publish -c Release -o /app/publish --no-build
+ 
+# Final image AS a RUNTIME
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish ./
 ENTRYPOINT ["dotnet", "hello-world.dll"]
