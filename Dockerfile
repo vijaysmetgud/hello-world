@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 
 # Copy everything
-COPY src/ ./src/
+COPY ./publish ./src/
 
 # Restore as distinct layers
 RUN dotnet restore
