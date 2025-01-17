@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     // Publish the .NET application to the './publish' directory
-                    sh 'dotnet publish /var/lib/jenkins/workspace/dotdocker/src/HelloWorld/hello-world.csproj --configuration Release --output ./publish'
+                    sh 'dotnet publish /var/lib/jenkins/workspace/dotdocker/hello-world.csproj --configuration Release --output ./publish'
 
 
                 }
