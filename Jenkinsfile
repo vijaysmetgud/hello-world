@@ -68,18 +68,18 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            // Notify upon successful build and push
-            echo 'Build, Dockerization, and Push were successful!'
-        }
-        failure {
-            // Notify upon failure
-            echo 'Build or Dockerization failed. Please check the logs for errors.'
-        }
-        always {
-            // Clean workspace after build
-            cleanWs()
-        }
-    }
-}
+    // post {
+    //     success {
+    //         // Notify upon successful build and push
+    //         echo 'Build, Dockerization, and Push were successful!'
+    //     }
+    //     failure {
+    //         // Notify upon failure
+    //         echo 'Build or Dockerization failed. Please check the logs for errors.'
+    //     }
+    //     always {
+    //         // Clean workspace after build
+    //         cleanWs()
+    //     }
+    // }
+// }
