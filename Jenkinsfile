@@ -51,7 +51,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -f Dockerfile -t myimage:latest ./publish'
+                    sh 'docker build -f Dockerfile -t myimage:latest /var/lib/jenkins/workspace/dotdocker/'
+
+
                 }
             }
         }
