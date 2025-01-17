@@ -8,6 +8,8 @@ pipeline {
         DOCKER_REGISTRY = 'docker.io' // Docker Hub (use your registry if not Docker Hub)
         DOCKER_CREDENTIALS = 'docker-hub-credentials' // Jenkins Docker Hub credentials ID
         WORKSPACE_PATH = '/var/lib/jenkins/workspace/dotdocker'  // Your workspace path
+        DOCKER_USER = 'vsmetgud'
+        DOCKER_PASSWORD = 'Omganesh@!23456'
     }
 
     stages {
