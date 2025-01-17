@@ -6,8 +6,6 @@ WORKDIR /app
 
 # Copy the necessary .csproj files into the container
 COPY hello-world.csproj ./   
-COPY lib/library.csproj ./lib/  # If applicable
-COPY test/unit-tests.csproj ./test/  # If applicable
 
 # Restore dependencies
 RUN dotnet restore
