@@ -6,7 +6,7 @@ pipeline {
         DOTNET_VERSION = '7.0'  // .NET SDK version
         DOCKER_IMAGE_NAME = 'vsmetgud/dotnet'  // Desired Docker image name
         DOCKER_REGISTRY = 'docker.io' // Docker Hub (use your registry if not Docker Hub)
-        DOCKER_CREDENTIALS = 'docker-hub-credentials' // Jenkins Docker Hub credentials ID
+        DOCKER_CREDENTIALS = 'dockerhub-id' // Jenkins Docker Hub credentials ID
         WORKSPACE_PATH = '/var/lib/jenkins/workspace/dotdocker'  // Your workspace path
         DOCKER_USER = 'vsmetgud'
         DOCKER_PASSWORD = 'Omganesh@!23456'
