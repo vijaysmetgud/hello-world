@@ -14,7 +14,7 @@ RUN dotnet restore /app/hello-world.csproj
 COPY . . 
 
 # Build the project (no restore since it's already done)
-RUN dotnet build -c Release --no-restore
+RUN dotnet build -c Release 
 
 # Publish the project to /app/publish
 RUN dotnet publish -c Release -o /app/publish --no-build
