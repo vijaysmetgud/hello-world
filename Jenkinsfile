@@ -51,11 +51,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image using the Dockerfile
-                    sh 'docker build -t myimage:latest ./publish'
+                    sh 'docker build -f Dockerfile -t myimage:latest ./publish'
                 }
             }
         }
+
 
         stage('Push Docker Image to Registry') {
             steps {
