@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define environment variables
-        DOTNET_VERSION = '7.0'  // .NET SDK version
+        DOTNET_VERSION = '6.0'  // .NET SDK version
         DOCKER_IMAGE_NAME = 'vsmetgud/dotnet'  // Desired Docker image name
         DOCKER_REGISTRY = 'docker.io' // Docker Hub (use your registry if not Docker Hub)
         DOCKER_CREDENTIALS = 'docker-hub-credentials' // Jenkins Docker Hub credentials ID
