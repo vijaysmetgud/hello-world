@@ -4,14 +4,14 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the necessary .csproj files into the container
-COPY hello-world.csproj ./   
+# Copy the necessary .csproj file(s) into the container
+COPY hello-world.csproj ./  
 
-# Restore dependencies
+# Restore dependencies (this will only restore dependencies for the csproj copied above)
 RUN dotnet restore
 
-# Now copy the rest of the project files
-COPY . . # Copy all project files into the container
+# Now copy the rest of the project files (source code, etc.)
+COPY . . 
 
 # Build the project (no restore since it's already done)
 RUN dotnet build -c Release --no-restore
